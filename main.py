@@ -96,12 +96,36 @@ async def dice(ctx):
     roll = random.randint(1, 6)
     await ctx.send(f"Dice: `{roll}`")
 
+@bot.command(name='inspire')
+async def inspire(ctx):
+    """
+    Shows a random inspirational quote from zenquotes.io
+    """
+    await ctx.send(get_quote())
+
 @bot.command(name='joined')
 async def joined(ctx, *, member: discord.Member):
     """
     Shows when a member joined.
     """
     await ctx.send(f'**{member.name}** joined in `{member.joined_at}`')
+
+@bot.command(name='99')
+async def nine_nine(ctx):
+    """
+    Shows a random quote from Brooklyn 99
+    """
+    brooklyn_99_quotes = [
+        'I\'m the human form of the 💯 emoji.',
+        'Bingpot!',
+        (
+            'Cool. Cool cool cool cool cool cool cool, '
+            'no doubt no doubt no doubt no doubt.'
+        ),
+    ]
+
+    response = random.choice(brooklyn_99_quotes)
+    await ctx.send(response)
 
 @bot.command(name='repeat')
 async def repeat(ctx, times: int, *, message):
@@ -137,30 +161,6 @@ async def wave(ctx, *, member: discord.Member):
     Waves member.
     """
     await ctx.send(f'**{ctx.author.mention}** waves **{member.mention}**')
-
-@bot.command(name='inspire')
-async def inspire(ctx):
-    """
-    Shows a random inspirational quote from zenquotes.io
-    """
-    await ctx.send(get_quote())
-
-@bot.command(name='99')
-async def nine_nine(ctx):
-    """
-    Shows a random quote from Brooklyn 99
-    """
-    brooklyn_99_quotes = [
-        'I\'m the human form of the 💯 emoji.',
-        'Bingpot!',
-        (
-            'Cool. Cool cool cool cool cool cool cool, '
-            'no doubt no doubt no doubt no doubt.'
-        ),
-    ]
-
-    response = random.choice(brooklyn_99_quotes)
-    await ctx.send(response)
 #---------------------------------------------------------------------------------
 
 # OOF Commands
