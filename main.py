@@ -88,6 +88,17 @@ async def div(ctx, number1: int, number2: int):
 #---------------------------------------------------------------------------------
 
 #   Fun / Misc Commands
+@bot.command(name='coin')
+async def coin(ctx):
+    """
+    Flip a coin.
+    """
+    coin = random.randint(0, 1)
+    if coin == 0:
+        await ctx.send('**Heads!**')
+    elif coin == 1:
+        await ctx.send('**Tails!**')
+
 @bot.command(name='dice')
 async def dice(ctx):
     """
@@ -220,17 +231,5 @@ async def kick_error(ctx, error):
 
     if isinstance(error, commands.BotMissingPermissions):
         await ctx.send('Bot is missing kick_members permission.')
-
-#@bot.event
-#async def on_message(message):
-#    if message.author == bot.user:
-#        return
-#    
-#    if message.content.startswith('*hello'):
-#        await message.channel.send('Hello')
-#    
-#    if message.content.startswith('*inspire'):
-#        quote = get_quote()
-#        await message.channel.send(quote)
 
 bot.run('MzA4OTk3NzE3ODQ4NDg5OTg2.WQiujA.gISKZosef7z2xiS_2yrbLiUJg6k')
