@@ -1,9 +1,15 @@
 import discord
 from discord.ext import commands
+import os
+from dotenv import load_dotenv
 import requests
 import logging
 import json
 import random
+
+# Token
+load_dotenv()
+token = os.getenv('DISCORD_TOKEN')
 
 # Init Logger
 logger = logging.getLogger('discord')
@@ -232,4 +238,9 @@ async def kick_error(ctx, error):
     if isinstance(error, commands.BotMissingPermissions):
         await ctx.send('Bot is missing kick_members permission.')
 
-bot.run('MzA4OTk3NzE3ODQ4NDg5OTg2.WQiujA.gISKZosef7z2xiS_2yrbLiUJg6k')
+@bot.command(name='shutdown')
+@commands.is_owner()
+async def shutdown(ctx):
+    await ctx.bot.logout()
+
+bot.run(token)
